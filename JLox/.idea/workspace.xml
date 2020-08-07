@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1fgNmUNm4NLSir51GFfoUPogJ2d" />
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
@@ -23,7 +30,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Lox">
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -32,6 +39,16 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="AstPrinter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zdguo.craftinginterpreters.lox.AstPrinter" />
+      <module name="JLox" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Lox" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zdguo.craftinginterpreters.lox.Lox" />
+      <module name="JLox" />
+      <method v="2" />
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.zdguo.lox.Lox" />
@@ -43,6 +60,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2" />
+    </configuration>
+    <configuration name="com.zdguo.craftinginterpreters.tool.GenerateAst" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.zdguo.craftinginterpreters.tool.GenerateAst" />
+      <module name="JLox" />
+      <option name="PROGRAM_PARAMETERS" value="D:\Programming\Multiple Language\Crafting Interpreters\JLox\src\com\zdguo\craftinginterpreters\lox" />
+      <method v="2" />
+    </configuration>
+    <configuration name="com.zdguo.lox.Scanner" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.zdguo.lox.Scanner" />
+      <module name="JLox" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -52,6 +83,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Lox" />
+        <item itemvalue="Application.AstPrinter" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -70,17 +103,37 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="286" y="245" key="#com.intellij.ide.util.MemberChooser" timestamp="1596808745825">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="286" y="245" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080@0.0.1858.1080" timestamp="1596808745825" />
     <state x="709" y="260" width="450" height="553" key="FileChooserDialogImpl" timestamp="1596636776473">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="260" width="450" height="553" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1596636776473" />
-    <state x="430" y="184" key="SettingsEditor" timestamp="1596636748912">
+    <state width="927" height="307" key="GridCell.Tab.0.bottom" timestamp="1596810756245">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="430" y="184" key="SettingsEditor/0.0.1858.1080@0.0.1858.1080" timestamp="1596636748912" />
-    <state x="1056" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1596636455339">
+    <state width="927" height="307" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1596810756245" />
+    <state width="927" height="307" key="GridCell.Tab.0.center" timestamp="1596810756245">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="1056" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1858.1080@0.0.1858.1080" timestamp="1596636455339" />
+    <state width="927" height="307" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1596810756245" />
+    <state width="927" height="307" key="GridCell.Tab.0.left" timestamp="1596810756245">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="927" height="307" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1596810756245" />
+    <state width="927" height="307" key="GridCell.Tab.0.right" timestamp="1596810756245">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="927" height="307" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1596810756245" />
+    <state x="430" y="184" key="SettingsEditor" timestamp="1596649339054">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="430" y="184" key="SettingsEditor/0.0.1858.1080@0.0.1858.1080" timestamp="1596649339054" />
+    <state x="1056" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1596775568367">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="1056" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1858.1080@0.0.1858.1080" timestamp="1596775568367" />
   </component>
 </project>

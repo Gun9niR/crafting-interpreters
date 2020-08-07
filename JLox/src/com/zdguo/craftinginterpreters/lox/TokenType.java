@@ -1,4 +1,4 @@
-package com.zdguo.lox;
+package com.zdguo.craftinginterpreters.lox;
 
 enum TokenType {
     // single-character tokens

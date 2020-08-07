@@ -1,4 +1,4 @@
-package com.zdguo.lox;
+package com.zdguo.craftinginterpreters.lox;
 
 import java.util.ArrayList;
 import java.util.HashMap;

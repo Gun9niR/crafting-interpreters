@@ -1,4 +1,4 @@
-package com.zdguo.lox;
+package com.zdguo.craftinginterpreters.lox;
 
 public class Token {
     final TokenType type;
