@@ -30,6 +30,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zdguo.craftinginterpreters.lox" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Lox">
     <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
@@ -111,22 +116,22 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="260" width="450" height="553" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1596636776473" />
-    <state width="927" height="309" key="GridCell.Tab.0.bottom" timestamp="1596884364811">
+    <state width="927" height="309" key="GridCell.Tab.0.bottom" timestamp="1596884590954">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="927" height="309" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1596884364811" />
-    <state width="927" height="309" key="GridCell.Tab.0.center" timestamp="1596884364811">
+    <state width="927" height="309" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1596884590954" />
+    <state width="927" height="309" key="GridCell.Tab.0.center" timestamp="1596884590954">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="927" height="309" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1596884364811" />
-    <state width="927" height="309" key="GridCell.Tab.0.left" timestamp="1596884364811">
+    <state width="927" height="309" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1596884590954" />
+    <state width="927" height="309" key="GridCell.Tab.0.left" timestamp="1596884590954">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="927" height="309" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1596884364811" />
-    <state width="927" height="309" key="GridCell.Tab.0.right" timestamp="1596884364811">
+    <state width="927" height="309" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1596884590954" />
+    <state width="927" height="309" key="GridCell.Tab.0.right" timestamp="1596884590954">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="927" height="309" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1596884364811" />
+    <state width="927" height="309" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1596884590954" />
     <state x="430" y="184" key="SettingsEditor" timestamp="1596649339054">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
