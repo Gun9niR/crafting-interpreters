@@ -9,8 +9,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Lox {
-    private static final Interpreter intepreter = new Interpreter();
+    private static final Interpreter interpreter = new Interpreter();
     static boolean hadError = false;
+
     static boolean hadRuntimeError = false;
 
     public static void main(String[] args) throws IOException {
@@ -53,7 +54,7 @@ public class Lox {
 
         if(hadError) return;
 
-        intepreter.interpret(statements);
+        interpreter.interpret(statements);
     }
 
     static void error(int line, String message) {

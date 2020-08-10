@@ -10,6 +10,7 @@ public class GenerateAst {
 
         String outputDir = "D:\\Programming\\Multiple\\CraftingInterpreters\\JLox\\src\\com\\zdguo\\craftinginterpreters\\lox";
         defineAst(outputDir, "Expr", Arrays.asList(
+                "Assign : Token name, Expr value",
                 "Binary : Expr left, Token operator, Expr right",
                 "Grouping : Expr expression",
                 "Literal : Object value",

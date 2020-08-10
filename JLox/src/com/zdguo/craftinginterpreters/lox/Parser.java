@@ -63,7 +63,25 @@ public class Parser {
     }
 
     private Expr expression() {
-        return equality();
+        return assignment();
+    }
+
+    private Expr assignment() {
+        Expr expr = equality();    // supposedly the identifier of the variable
+
+        if(match(TokenType.EQUAL)) {
+            Token equals = previous(); // the '=' token
+            Expr value = assignment();
+
+            if(expr instanceof Expr.Variable) {
+                Token name = ((Expr.Variable)expr).name;
+                return new Expr.Assign(name, value);
+            }
+
+            error(equals, "Invalid assignment target.");
+        }
+
+        return expr;  // if there's no '=', return other types of expression or a variable with null value
     }
 
     private Expr equality() {
