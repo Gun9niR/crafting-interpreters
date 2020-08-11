@@ -3,6 +3,7 @@ package com.zdguo.craftinginterpreters.lox;
 import java.util.List;
 
 public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
+    // current environment
     private Environment environment = new Environment();
 
     void interpret(List<Stmt> statements) {
@@ -19,13 +20,23 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         stmt.accept(this);
     }
 
-    private String stringify(Object object) {
-        if(object == null) return "nil";
-        String text = object.toString();
-        if(object instanceof Double && text.endsWith(".0"))
-            return text.substring(0, text.length() - 2);
+    @Override
+    public Void visitBlockStmt(Stmt.Block stmt) {
+        excuteBlock(stmt.statements, new Environment(environment));
+        return null;
+    }
 
-        return text;
+    private void excuteBlock(List<Stmt> statements, Environment environment) {
+        Environment previous = this.environment;
+        try {
+            this.environment = environment;
+
+            for(Stmt statement : statements) {
+                excute(statement);
+            }
+        } finally {
+            this.environment = previous;
+        }
     }
 
     @Override
@@ -54,7 +65,10 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
     @Override
     public Void visitExpressionStmt(Stmt.Expression stmt) {
-        evaluate(stmt.expression);
+        if(Lox.inREPL)
+            System.out.println(evaluate(stmt.expression));
+        else
+            evaluate(stmt.expression);
         return null;
     }
 
@@ -142,6 +156,15 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
         // Unreachable
         return null;
+    }
+
+    private String stringify(Object object) {
+        if(object == null) return "nil";
+        String text = object.toString();
+        if(object instanceof Double && text.endsWith(".0"))
+            return text.substring(0, text.length() - 2);
+
+        return text;
     }
 
     private void checkNumberOperands(Token operator, Object operand) {
