@@ -1,6 +1,7 @@
 package com.zdguo.craftinginterpreters.lox;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
@@ -45,9 +46,87 @@ public class Parser {
     }
 
     private Stmt statement() {
+        if(match(TokenType.FOR)) return forStatement();
         if(match(TokenType.PRINT)) return printStatement();
+        if(match(TokenType.WHILE)) return whileStatement();
         if(match(TokenType.LEFT_BRACE)) return new Stmt.Block(block());
+        if(match(TokenType.IF)) return ifStatement();
         return expressionStatement();
+    }
+
+    /* how to desugar for
+    for(initializer; condition; increment)
+        statement
+
+
+    initializer
+    while(condition) {
+        statement
+        increment
+    }
+
+     */
+    private Stmt forStatement() {
+        consume(TokenType.LEFT_PAREN, "Expect '(' after 'for'.");
+
+        Stmt initializer;
+        if(match(TokenType.SEMICOLON)) {
+            initializer = null;
+        } else if(match(TokenType.VAR)) {
+            initializer = varDeclaration();
+        } else {
+            initializer = expressionStatement();
+        }
+
+        Expr condition = null;
+        if(!check(TokenType.SEMICOLON)) {
+            condition = expression();
+        }
+        consume(TokenType.SEMICOLON, "Expect ';' after for condition.");
+
+        Expr increment = null;
+        if(!check(TokenType.RIGHT_PAREN)) {
+            increment = expression();
+        }
+        consume(TokenType.RIGHT_PAREN, "Expect ')' after for clauses.");
+
+        Stmt body = statement();
+
+        if(increment != null) {
+            body = new Stmt.Block(Arrays.asList(body, new Stmt.Expression(increment)));
+        }
+
+        if(condition == null) condition = new Expr.Literal(true);
+        body = new Stmt.While(condition, body);
+
+        if(initializer != null) {
+            body = new Stmt.Block(Arrays.asList(initializer, body));
+        }
+
+        return body;
+    }
+
+    private Stmt whileStatement() {
+        consume(TokenType.LEFT_PAREN, "Expect '(' after 'while'.");
+        Expr condition = expression();
+        consume(TokenType.RIGHT_PAREN, "Expect ')' after while condition.");
+        Stmt body = statement();
+
+        return new Stmt.While(condition, body);
+    }
+
+    private Stmt ifStatement() {
+        consume(TokenType.LEFT_PAREN, "Expect '(' after 'if'.");
+        Expr condition = expression();
+        consume(TokenType.RIGHT_PAREN, "Expect ')' after if condition");
+
+        Stmt thenBranch = statement();
+        Stmt elseBranch = null;
+        if(match(TokenType.ELSE)) {
+            elseBranch = statement();
+        }
+
+        return new Stmt.If(condition, thenBranch, elseBranch);
     }
 
     private List<Stmt> block() {
@@ -80,7 +159,7 @@ public class Parser {
     }
 
     private Expr assignment() {
-        Expr expr = equality();    // supposedly the identifier of the variable
+        Expr expr = or();    // supposedly the identifier of the variable
 
         if(match(TokenType.EQUAL)) {
             Token equals = previous(); // the '=' token
@@ -97,13 +176,37 @@ public class Parser {
         return expr;  // if there's no '=', return other types of expression or a variable with null value
     }
 
+    private Expr or() {
+        Expr expr = and();
+
+        while(match(TokenType.OR)) {
+            Token operator = previous();
+            Expr right = comparison();
+            expr = new Expr.Binary(expr, operator, right);
+        }
+
+        return expr;
+    }
+
+    private Expr and() {
+        Expr expr = equality();
+
+        while(match(TokenType.AND)) {
+            Token operator = previous();
+            Expr right = comparison();
+            expr = new Expr.Logical(expr, operator, right);
+        }
+
+        return expr;
+    }
+
     private Expr equality() {
         Expr expr = comparison();
 
         while(match(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL)) {
             Token operator = previous();
             Expr right = comparison();
-            expr = new Expr.Binary(expr, operator, right);
+            expr = new Expr.Logical(expr, operator, right);
         }
 
         return expr;
