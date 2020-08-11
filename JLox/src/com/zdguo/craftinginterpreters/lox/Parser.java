@@ -8,6 +8,7 @@ public class Parser {
     private static class ParseError extends RuntimeException {}
     private final List<Token> tokens;
     private int current = 0;
+    private int inLoop = 0;
 
     Parser(List<Token> tokens) {
         this.tokens = tokens;
@@ -51,7 +52,16 @@ public class Parser {
         if(match(TokenType.WHILE)) return whileStatement();
         if(match(TokenType.LEFT_BRACE)) return new Stmt.Block(block());
         if(match(TokenType.IF)) return ifStatement();
+        if(match(TokenType.BREAK)) return breakStatement();
         return expressionStatement();
+    }
+
+    private Stmt breakStatement() {
+        if(inLoop == 0) {
+            throw error(previous(), "Break must be used in a loop");
+        }
+        consume(TokenType.SEMICOLON, "Expect ';' after 'break'");
+        return new Stmt.Break();
     }
 
     /* how to desugar for
@@ -67,6 +77,7 @@ public class Parser {
 
      */
     private Stmt forStatement() {
+        inLoop++;
         consume(TokenType.LEFT_PAREN, "Expect '(' after 'for'.");
 
         Stmt initializer;
@@ -103,15 +114,18 @@ public class Parser {
             body = new Stmt.Block(Arrays.asList(initializer, body));
         }
 
+        inLoop--;
         return body;
     }
 
     private Stmt whileStatement() {
+        inLoop++;
         consume(TokenType.LEFT_PAREN, "Expect '(' after 'while'.");
         Expr condition = expression();
         consume(TokenType.RIGHT_PAREN, "Expect ')' after while condition.");
         Stmt body = statement();
 
+        inLoop--;
         return new Stmt.While(condition, body);
     }
 
@@ -290,7 +304,7 @@ public class Parser {
         advance();
 
         if(!isAtEnd()) {
-            if(previous().type != TokenType.SEMICOLON) return;
+            if(previous().type == TokenType.SEMICOLON) return;
 
             switch(peek().type) {
                 case CLASS:

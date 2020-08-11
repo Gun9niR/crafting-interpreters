@@ -21,6 +21,7 @@ public class GenerateAst {
 
         defineAst(outputDir, "Stmt", Arrays.asList(
                 "Block : List<Stmt> statements",
+                "Break : ",
                 "Var : Token name, Expr initializer",
                 "Expression : Expr expression",
                 "If : Expr condition, Stmt thenBranch, Stmt elseBranch",
@@ -97,26 +98,25 @@ public class GenerateAst {
     private static void defineType(PrintWriter writer, String baseName, String className, String fieldList) {
         writer.println("    static class " + className + " extends " + baseName + " {");
 
-        // constructor signature
-        writer.println("        " + className + "(" + fieldList + ") {");
-
         // store parameters in fields
-        String[] fields = fieldList.split(", ");
-        for(String field : fields) {
-            String name = field.split(" ")[1];
-            writer.println("            this." + name + " = " + name + ";");
-        }
-
-        writer.println("        }");
-
-        // fields
-        writer.println();
-        for(String field : fields) {
-            writer.println("        final " + field + ";");
+        if(!fieldList.equals("")) {
+            // constructor signature
+            writer.println("        " + className + "(" + fieldList + ") {");
+            String[] fields = fieldList.split(", ");
+            for (String field : fields) {
+                String name = field.split(" ")[1];
+                writer.println("            this." + name + " = " + name + ";");
+            }
+            writer.println("        }");
+            // fields
+            writer.println();
+            for (String field : fields) {
+                writer.println("        final " + field + ";");
+            }
+            writer.println();
         }
 
         // override accept() method
-        writer.println();
         writer.println("        @Override");
         writer.println("        <R> R accept(Visitor<R> visitor) {");
         writer.println("            return visitor.visit" + className + baseName + "(this);");
