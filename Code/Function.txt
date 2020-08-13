@@ -1,10 +1,11 @@
-var a = "global";
-{
-  fun showA() {
-    print a;
-  }
+var a = 3;
 
-  showA();
-  var a = "block";
-  showA();
+for(; a<100;) {
+a = a+1;
+print a;
+
+if(a == 50) {
+print a==50;
+   break;
+}
 }

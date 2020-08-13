@@ -10,7 +10,6 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     final Environment globals = new Environment();
     private Environment environment = globals;
     private final Map<Expr, Integer> locals = new HashMap<>();
-    private static class BreakSignal extends RuntimeException {}
 
     Interpreter() {
         // the clock variable's value is an anonymous class
@@ -50,7 +49,7 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
     @Override
     public Void visitBreakStmt(Stmt.Break stmt) {
-        throw new BreakSignal();
+        throw new Break();
     }
 
     @Override
@@ -71,7 +70,7 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         try {
             while(isTruthy(evaluate(stmt.condition)))
                 execute(stmt.body);
-        } catch(BreakSignal signal) {
+        } catch(Break signal) {
             return null;
         }
         return null;
@@ -79,7 +78,7 @@ public class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
     @Override
     public Void visitIfStmt(Stmt.If stmt) {
-        if(isTruthy((evaluate(stmt.condition)))) {
+        if(isTruthy(evaluate(stmt.condition))) {
             execute(stmt.thenBranch);
         } else if(stmt.elseBranch != null) {
             execute(stmt.elseBranch);

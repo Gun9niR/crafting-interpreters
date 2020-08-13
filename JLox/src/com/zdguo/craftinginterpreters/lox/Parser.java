@@ -8,7 +8,6 @@ public class Parser {
     private static class ParseError extends RuntimeException {}
     private final List<Token> tokens;
     private int current = 0;
-    private int inLoop = 0;
 
     Parser(List<Token> tokens) {
         this.tokens = tokens;
@@ -93,11 +92,9 @@ public class Parser {
     }
 
     private Stmt.Break breakStatement() {
-        if(inLoop == 0) {
-            throw error(previous(), "Break must be used in a loop");
-        }
+        Token keyword = previous();
         consume(TokenType.SEMICOLON, "Expect ';' after 'break'");
-        return new Stmt.Break();
+        return new Stmt.Break(keyword);
     }
 
     /* how to desugar for
@@ -113,7 +110,7 @@ public class Parser {
 
      */
     private Stmt forStatement() {
-        inLoop++;
+
         consume(TokenType.LEFT_PAREN, "Expect '(' after 'for'.");
 
         Stmt initializer;
@@ -150,18 +147,16 @@ public class Parser {
             body = new Stmt.Block(Arrays.asList(initializer, body));
         }
 
-        inLoop--;
+
         return body;
     }
 
     private Stmt whileStatement() {
-        inLoop++;
         consume(TokenType.LEFT_PAREN, "Expect '(' after 'while'.");
         Expr condition = expression();
         consume(TokenType.RIGHT_PAREN, "Expect ')' after while condition.");
         Stmt body = statement();
 
-        inLoop--;
         return new Stmt.While(condition, body);
     }
 
@@ -256,7 +251,7 @@ public class Parser {
         while(match(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL)) {
             Token operator = previous();
             Expr right = comparison();
-            expr = new Expr.Logical(expr, operator, right);
+            expr = new Expr.Binary(expr, operator, right);
         }
 
         return expr;
@@ -343,7 +338,9 @@ public class Parser {
         if(match(TokenType.TRUE)) return new Expr.Literal(true);
         if(match(TokenType.NIL)) return new Expr.Literal(null);
 
-        if(match(TokenType.NUMBER, TokenType.STRING)) return new Expr.Literal(previous().literal);
+        if(match(TokenType.NUMBER, TokenType.STRING)) {
+            return new Expr.Literal(previous().literal);
+        }
 
         if(match(TokenType.IDENTIFIER)) return new Expr.Variable(previous());
         if(match(TokenType.LEFT_PAREN)) {

@@ -10,6 +10,7 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     // scopes only keep track of local blocks
     private final Stack<Map<String ,Boolean>> scopes = new Stack<>();
     private FunctionType currentFunction = FunctionType.NONE;
+    private int inLoop = 0;
 
     private enum FunctionType {
         NONE, FUNCTION
@@ -28,6 +29,9 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     }
 
     public Void visitBreakStmt(Stmt.Break stmt) {
+        if(inLoop == 0) {
+            Lox.error(stmt.keyword, "'break' must be used in a loop");
+        }
         return null;
     }
 
@@ -65,8 +69,10 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     }
 
     public Void visitWhileStmt(Stmt.While stmt) {
+        inLoop++;
         resolve(stmt.condition);
         resolve(stmt.body);
+        inLoop--;
         return null;
     }
 
