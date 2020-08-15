@@ -1,0 +1,10 @@
+class Bacon {
+  init(with) {
+  this.with = with;
+}
+  eat() {
+    print this.with;
+  }
+}
+
+Bacon("egg").eat(); // Prints "Crunch crunch crunch!".

@@ -13,11 +13,30 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     private int inLoop = 0;
 
     private enum FunctionType {
-        NONE, FUNCTION
+        NONE, FUNCTION, METHOD, INITIALIZER
     }
 
     Resolver(Interpreter interpreter) {
         this.interpreter = interpreter;
+    }
+
+    public Void visitClassStmt(Stmt.Class stmt) {
+        declare(stmt.name);
+        define(stmt.name);
+
+        beginScope();
+        scopes.peek().put("this", true);
+
+        for(Stmt.Function method : stmt.methods) {
+            FunctionType declaration = FunctionType.METHOD;
+            if(method.name.lexeme.equals("init")) {
+                declaration = FunctionType.INITIALIZER;
+            }
+            resolveFunction(method, declaration);
+        }
+
+        endScope();
+        return null;
     }
 
     @Override
@@ -88,6 +107,9 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
             Lox.error(stmt.keyword, "Cannot return from top-level code.");
         }
         if(stmt.value != null) {
+            if(currentFunction == FunctionType.INITIALIZER) {
+                Lox.error(stmt.keyword, "Cannot return a value from an initializer.");
+            }
             resolve(stmt.value);
         }
         return null;
@@ -157,6 +179,23 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
         }
 
         resolveLocal(expr, expr.name);
+        return null;
+    }
+
+    public Void visitGetExpr(Expr.Get expr) {
+        resolve(expr.object);
+        // properties are looked up dynamically, they don't get resolved
+        return null;
+    }
+
+    public Void visitSetExpr(Expr.Set expr) {
+        resolve(expr.value);
+        resolve(expr.object);
+        return null;
+    }
+
+    public Void visitThisExpr(Expr.This expr) {
+        resolveLocal(expr, expr.keyword);
         return null;
     }
 
