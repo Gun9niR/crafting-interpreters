@@ -59,7 +59,7 @@
     <configuration name="Lox" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.zdguo.craftinginterpreters.lox.Lox" />
       <module name="JLox" />
-      <option name="PROGRAM_PARAMETERS" value="D:\\Programming\\Multiple\\CraftingInterpreters\\Code\\Class.txt" />
+      <option name="PROGRAM_PARAMETERS" value="D:\\Programming\\Multiple\\CraftingInterpreters\\Code\\closure\\assign_to_shadowed_later.lox" />
       <method v="2" />
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -115,10 +115,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="286" y="245" key="#com.intellij.ide.util.MemberChooser" timestamp="1597420577331">
+    <state x="286" y="245" key="#com.intellij.ide.util.MemberChooser" timestamp="1597556036050">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="286" y="245" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080@0.0.1858.1080" timestamp="1597420577331" />
+    <state x="286" y="245" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080@0.0.1858.1080" timestamp="1597556036050" />
     <state x="697" y="433" width="466" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1597299983078">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -127,22 +127,22 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="709" y="260" width="450" height="553" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1596636776473" />
-    <state width="919" height="304" key="GridCell.Tab.0.bottom" timestamp="1597479231799">
+    <state width="941" height="304" key="GridCell.Tab.0.bottom" timestamp="1597559798424">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="919" height="304" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1597479231799" />
-    <state width="919" height="304" key="GridCell.Tab.0.center" timestamp="1597479231799">
+    <state width="941" height="304" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1597559798424" />
+    <state width="941" height="304" key="GridCell.Tab.0.center" timestamp="1597559798424">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="919" height="304" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1597479231799" />
-    <state width="919" height="304" key="GridCell.Tab.0.left" timestamp="1597479231799">
+    <state width="941" height="304" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1597559798424" />
+    <state width="941" height="304" key="GridCell.Tab.0.left" timestamp="1597559798424">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="919" height="304" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1597479231799" />
-    <state width="919" height="304" key="GridCell.Tab.0.right" timestamp="1597479231799">
+    <state width="941" height="304" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1597559798424" />
+    <state width="941" height="304" key="GridCell.Tab.0.right" timestamp="1597559798424">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="919" height="304" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1597479231799" />
+    <state width="941" height="304" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1597559798424" />
     <state width="927" height="383" key="GridCell.Tab.1.bottom" timestamp="1597219833319">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -177,7 +177,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/com/zdguo/craftinginterpreters/lox/Expr.java</url>
-          <line>116</line>
+          <line>117</line>
           <properties field="left" class="com.zdguo.craftinginterpreters.lox.Expr.Logical" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
