@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CLox.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="chunk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -28,6 +25,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="value.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

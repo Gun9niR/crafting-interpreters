@@ -1,3 +1,6 @@
-﻿  CLox.c
-D:\Programming\Multiple\Crafting-Interpreters\CLox\CLox\CLox.c(14,8): warning C4013: “printf”未定义；假设外部返回 int
+﻿  main.c
+  vm.c
+D:\Programming\Multiple\Crafting-Interpreters\CLox\CLox\vm.c(32,1): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+D:\Programming\Multiple\Crafting-Interpreters\CLox\CLox\vm.c(33,1): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+  正在生成代码...
   CLox.vcxproj -> D:\Programming\Multiple\Crafting-Interpreters\CLox\Debug\CLox.exe
