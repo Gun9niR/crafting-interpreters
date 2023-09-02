@@ -1,5 +1,5 @@
 # Crafting-Interpreters
-Implements a simple, half functional half object-oriented language Lox in both Java and C. 
+Implements a simple, half functional half object-oriented language Lox in Java.
 
 ## Language Features
 ### Dynamic typing
@@ -133,8 +133,3 @@ Only methods are inherited, not the fields.
 There are only 2 functions in the standard library.
 - `print`
 - `clock()`, which returns the nuber of seconds since the program started.
-  
-# To-do list
-
-- [x] JLox
-- [ ] CLox
